@@ -1,6 +1,19 @@
-import streamlit as st
-import google.generativeai as genai
 import os
+import subprocess
+import sys
+
+# Function to install packages
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+# Install the necessary packages
+try:
+    import google.generativeai as genai
+except ModuleNotFoundError:
+    install('google-generativeai')
+    import google.generativeai as genai
+
+import streamlit as st
 from dotenv import load_dotenv
 
 load_dotenv()
