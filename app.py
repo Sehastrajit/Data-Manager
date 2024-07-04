@@ -1,34 +1,4 @@
 import os
-import subprocess
-import sys
-
-# Function to install packages
-def install(package):
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", package])
-
-# Upgrade pip
-try:
-    install("pip")
-except subprocess.CalledProcessError as e:
-    print(f"Failed to upgrade pip: {e}")
-    sys.exit(1)
-
-# List of required packages
-required_packages = [
-    'streamlit',
-    'google-generativeai',
-    'python-dotenv'
-]
-
-# Install required packages
-for package in required_packages:
-    try:
-        install(package)
-    except subprocess.CalledProcessError as e:
-        print(f"Failed to install {package}: {e}")
-        sys.exit(1)
-
-# Import installed packages
 import streamlit as st
 from dotenv import load_dotenv
 import google.generativeai as genai
