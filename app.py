@@ -5,7 +5,7 @@ import os
 st.write("Checking for environment variables...")
 
 # Try to get the API key from an environment variable
-api_key = os.getenv("GEMINI_API")
+api_key = os.getenv("gemini_api")
 
 if api_key:
     st.success("Successfully retrieved the GEMINI_API environment variable!")
