@@ -1,41 +1,30 @@
 import streamlit as st
 import google.generativeai as genai
+import os
 
-# Set page config
-st.set_page_config(page_title="Data Manager")
+st.write("Checking for environment variables...")
 
-# Fetch API key from Streamlit secrets
-api_key = st.secrets["gemini_api"]
+# Try to get the API key from an environment variable
+api_key = os.getenv("GEMINI_API")
+
+if api_key:
+    st.success("Successfully retrieved the GEMINI_API environment variable!")
+else:
+    st.error("Failed to retrieve the GEMINI_API environment variable. Make sure it's set in your Streamlit Cloud settings.")
+    st.stop()
 
 # Configure Google Generative AI
 genai.configure(api_key=api_key)
 model = genai.GenerativeModel('gemini-1.5-pro')
 
-# Initialize chat history
-if "messages" not in st.session_state:
-    st.session_state.messages = []
+# Rest of your app code...
+st.write("Gemini API configured successfully!")
 
-# Display chat messages
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
-
-# User input
-if prompt := st.chat_input("What would you like to know?"):
-    # Add user message to chat history
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    # Display user message in chat message container
-    with st.chat_message("user"):
-        st.markdown(prompt)
-    
-    # Generate Gemini's response
-    with st.chat_message("assistant"):
-        message_placeholder = st.empty()
-        full_response = ""
-        for chunk in model.generate_content(prompt, stream=True):
-            full_response += chunk.text
-            message_placeholder.markdown(full_response + "▌")
-        message_placeholder.markdown(full_response)
-    
-    # Add Gemini's response to chat history
-    st.session_state.messages.append({"role": "assistant", "content": full_response})
+# Simple input for testing
+user_input = st.text_input("Enter a prompt for Gemini:")
+if user_input:
+    try:
+        response = model.generate_content(user_input)
+        st.write("Gemini's response:", response.text)
+    except Exception as e:
+        st.error(f"Error generating content: {str(e)}")
