@@ -1,7 +1,7 @@
 # Data Manager
 
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)]([https://datamanager.streamlit.app/])
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://datamanager.streamlit.app/)
 
 ### How to run it on your own machine
 
