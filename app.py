@@ -6,16 +6,27 @@ import sys
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
-# Install the necessary packages
-try:
-    import google.generativeai as genai
-except ModuleNotFoundError:
-    install('google-generativeai')
-    import google.generativeai as genai
+# List of required packages
+required_packages = [
+    'streamlit',
+    'google-generativeai',
+    'python-dotenv'
+]
 
+# Install required packages
+for package in required_packages:
+    try:
+        install(package)
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to install {package}: {e}")
+        sys.exit(1)
+
+# Import installed packages
 import streamlit as st
 from dotenv import load_dotenv
+import google.generativeai as genai
 
+# Load environment variables
 load_dotenv()
 # Fetch API key from environment variable
 api_key = os.getenv("gemini_api")
@@ -29,5 +40,6 @@ model = genai.GenerativeModel('gemini-1.5-flash')
 # Input prompt from the user
 prompt = st.chat_input("Say something")
 if prompt:
-    answer = response = model.generate_content(prompt)
+    answer = model.generate_content(prompt)
     st.write(f"Gemini says: {answer.text}")
+
