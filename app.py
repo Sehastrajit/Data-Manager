@@ -34,7 +34,7 @@ with st.sidebar:
         st.write(st.session_state.csv_data.head())
 
 # Main content area
-st.title("Data Manager with Gemini AI")
+st.title("Data Manager")
 
 # Display conversation history
 for message in st.session_state.conversation:
