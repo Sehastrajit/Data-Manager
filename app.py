@@ -4,7 +4,14 @@ import sys
 
 # Function to install packages
 def install(package):
-    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", package])
+
+# Upgrade pip
+try:
+    install("pip")
+except subprocess.CalledProcessError as e:
+    print(f"Failed to upgrade pip: {e}")
+    sys.exit(1)
 
 # List of required packages
 required_packages = [
@@ -42,4 +49,3 @@ prompt = st.chat_input("Say something")
 if prompt:
     answer = model.generate_content(prompt)
     st.write(f"Gemini says: {answer.text}")
-
