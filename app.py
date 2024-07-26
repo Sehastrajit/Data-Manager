@@ -57,7 +57,7 @@ def generate_csv_context(df):
     """
     return context
 
-# Sidebar for CSV upload and LinkedIn badge
+# Sidebar for CSV upload and LinkedIn badge instructions
 with st.sidebar:
     st.header("Upload CSV")
     uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
@@ -67,13 +67,32 @@ with st.sidebar:
         st.write("CSV Preview:")
         st.write(st.session_state.csv_data.head())
     
-    # Add LinkedIn badge
+    # Add LinkedIn badge instructions
     st.markdown("---")
-    st.subheader("Developer")
+    st.subheader("LinkedIn Public Profile Badge Builder")
     st.markdown("""
+    Promote your profile by adding a badge to your blog, online resume, or website.
+    
+    **Step 1:** Copy and paste the following script anywhere in your page (you only need to do this once)
+    ```html
     <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-    <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="sehastrajit-s-0a84b8203" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/sehastrajit-s-0a84b8203?trk=profile-badge">Sehastrajit S</a></div>
-    """, unsafe_allow_html=True)
+    ```
+    
+    **Step 2:** Choose a badge size and copy the corresponding code:
+    
+    - **Small**
+    - **Medium**
+    - **Large**
+    - **Extra-large**
+    
+    (Replace with actual badge code for each size)
+    
+    By using these scripts, you agree to the LinkedIn Plugin Terms of Use.
+    """)
+    
+    st.markdown("---")
+    st.markdown("Created by [Sehastrajit S](https://www.linkedin.com/in/sehastrajit-s-0a84b8203/)")
+    st.markdown("Member of the Young Generation Coding Club @ VIT | certified GCCP, and Azure | Aspiring for MS in CS in the USA, Fall '25.")
 
 # Main content area
 st.title("Data Manager")
