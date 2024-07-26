@@ -57,7 +57,7 @@ def generate_csv_context(df):
     """
     return context
 
-# Sidebar for CSV upload
+# Sidebar for CSV upload and credits
 with st.sidebar:
     st.header("Upload CSV")
     uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
@@ -66,6 +66,12 @@ with st.sidebar:
         st.success("CSV file uploaded successfully!")
         st.write("CSV Preview:")
         st.write(st.session_state.csv_data.head())
+    
+    # Add credits
+    st.markdown("---")
+    st.subheader("Credits")
+    st.markdown("[Sehastrajit S](https://www.linkedin.com/in/sehastrajit-s-0a84b8203/)")
+    st.markdown("Member of the Young Generation Coding Club @ VIT | certified GCCP, and Azure | Aspiring for MS in CS in the USA, Fall '25.")
 
 # Main content area
 st.title("Data Manager")
