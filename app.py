@@ -72,19 +72,37 @@ with st.sidebar:
     st.subheader("Developer")
     st.components.v1.html("""
     <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-    <div style="background-color: transparent; padding: 0; margin: 0;">
+    <div id="badge-wrapper">
         <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="sehastrajit-s-0a84b8203" data-version="v1">
             <a class="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/sehastrajit-s-0a84b8203?trk=profile-badge" target="_blank" rel="noopener noreferrer">Sehastrajit S</a>
         </div>
     </div>
     <style>
-        .badge-base { min-height: 350px; }
+        #badge-wrapper {
+            background-color: transparent !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .badge-base {
+            min-height: 350px;
+            background-color: transparent !important;
+        }
+        .badge-base::before,
+        .badge-base::after {
+            display: none !important;
+        }
+        .badge-base .logo-container,
+        .badge-base .information {
+            background-color: transparent !important;
+        }
+        .badge-base .badge-base__link {
+            background-color: rgba(0, 0, 0, 0.8) !important;
+        }
     </style>
     """, height=400)
 
 # Main content area
 st.title("Data Manager")
-
 
 # Display conversation history
 for message in st.session_state.conversation:
