@@ -77,7 +77,7 @@ with st.sidebar:
             display: none !important;
         }
         .badge-base .badge-base__link {
-            background-color: #1E1E1E !important;
+            background-color: transparent !important;
             border-radius: 8px !important;
             overflow: hidden !important;
         }
@@ -85,6 +85,13 @@ with st.sidebar:
             background-color: transparent !important;
         }
         .bdiframe {
+            background-color: transparent !important;
+        }
+        .badge-base__container {
+            background-color: transparent !important;
+            box-shadow: none !important;
+        }
+        .badge-base__content {
             background-color: transparent !important;
         }
     </style>
