@@ -63,38 +63,28 @@ with st.sidebar:
         </div>
     </div>
     <style>
-        #badge-wrapper {
+        #badge-wrapper * {
             background-color: transparent !important;
-            padding: 0 !important;
-            margin: 0 !important;
+            background: none !important;
+            box-shadow: none !important;
         }
         .badge-base {
             min-height: 350px;
-            background-color: transparent !important;
-        }
-        .badge-base::before,
-        .badge-base::after {
-            display: none !important;
-        }
-        .badge-base .badge-base__link {
-            background-color: transparent !important;
-            border-radius: 8px !important;
-            overflow: hidden !important;
-        }
-        .badge-base .badge-base__link * {
-            background-color: transparent !important;
         }
         .bdiframe {
             background-color: transparent !important;
         }
-        .badge-base__container {
-            background-color: transparent !important;
-            box-shadow: none !important;
+        #badge-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(30, 30, 30, 0.9) !important;
+            z-index: -1;
         }
-        .badge-base__content {
-            background-color: transparent !important;
-        }
-    </style>
+</style>
     """, height=400)
 
 st.title("Data Manager")
