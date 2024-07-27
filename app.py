@@ -5,7 +5,7 @@ import pandas as pd
 import io
 import base64
 
-st.set_page_config(page_title="Data Manager", layout="wide", page_icon="Data-Manager/assets/data_master.png")
+st.set_page_config(page_title="Data Manager", layout="wide", page_icon="assets/data_master.png")
 
 # Function to encode image to base64
 def get_image_base64(image_path):
@@ -40,8 +40,8 @@ st.markdown("""
     }
 </style>
 """.format(
-    user_image=get_image_base64("Data-Manager/assets/User.png"),
-    ai_image=get_image_base64("Data-Manager/assets/Ai.png")
+    user_image=get_image_base64("assets/User.png"),
+    ai_image=get_image_base64("assets/Ai.png")
 ), unsafe_allow_html=True)
 
 api_key = os.getenv("gemini_api")
@@ -164,7 +164,6 @@ if user_input:
                     st.error(f"Error executing code: {str(e)}")
     
     st.session_state.conversation.append({"role": "assistant", "content": full_response})
-    st.experimental_rerun()
 
 if st.session_state.csv_data is not None:
     st.header("Uploaded CSV Data")
