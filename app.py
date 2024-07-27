@@ -70,6 +70,7 @@ with st.sidebar:
         }
         .badge-base {
             min-height: 350px;
+            position: relative;
         }
         .bdiframe {
             background-color: transparent !important;
@@ -81,10 +82,10 @@ with st.sidebar:
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(30, 30, 30, 0.9) !important;
+            background-color: rgb(37, 150, 190) !important;
             z-index: -1;
         }
-</style>
+    </style>
     """, height=400)
 
 st.title("Data Manager")
