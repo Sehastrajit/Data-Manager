@@ -82,7 +82,7 @@ with st.sidebar:
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgb(37, 150, 190) !important;
+            background-color: rgba(38,39,48,255) !important;
             z-index: -1;
         }
     </style>
