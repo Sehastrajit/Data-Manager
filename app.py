@@ -3,8 +3,46 @@ import google.generativeai as genai
 import os
 import pandas as pd
 import io
+import base64
 
-st.set_page_config(page_title="Data Manager", layout="wide")
+st.set_page_config(page_title="Data Manager", layout="wide", page_icon="Data-Manager/assets/data_master.png")
+
+# Function to encode image to base64
+def get_image_base64(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode()
+
+# Custom CSS to use the images
+st.markdown("""
+<style>
+    .stChatMessage [data-testid="StChatMessageContent"] {
+        background-image: none;
+        padding-left: 0;
+    }
+    .stChatMessage [data-testid="StChatMessageContent"] .stChatIconContent {
+        display: none;
+    }
+    .stChatMessage [data-testid="StChatMessageContent"]::before {
+        content: "";
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-right: 10px;
+    }
+    .stChatMessage.user [data-testid="StChatMessageContent"]::before {
+        background-image: url("data:image/png;base64,{user_image}");
+    }
+    .stChatMessage.assistant [data-testid="StChatMessageContent"]::before {
+        background-image: url("data:image/png;base64,{ai_image}");
+    }
+</style>
+""".format(
+    user_image=get_image_base64("Data-Manager/assets/User.png"),
+    ai_image=get_image_base64("Data-Manager/assets/Ai.png")
+), unsafe_allow_html=True)
 
 api_key = os.getenv("gemini_api")
 if not api_key:
