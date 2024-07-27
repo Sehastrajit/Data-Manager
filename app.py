@@ -12,17 +12,21 @@ def get_image_base64(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode()
 
+# Get base64 encoded images
+user_image = get_image_base64("assets/User.png")
+ai_image = get_image_base64("assets/Ai.png")
+
 # Custom CSS to use the images
-st.markdown("""
+st.markdown(f"""
 <style>
-    .stChatMessage [data-testid="StChatMessageContent"] {
+    .stChatMessage [data-testid="StChatMessageContent"] {{
         background-image: none;
         padding-left: 0;
-    }
-    .stChatMessage [data-testid="StChatMessageContent"] .stChatIconContent {
+    }}
+    .stChatMessage [data-testid="StChatMessageContent"] .stChatIconContent {{
         display: none;
-    }
-    .stChatMessage [data-testid="StChatMessageContent"]::before {
+    }}
+    .stChatMessage [data-testid="StChatMessageContent"]::before {{
         content: "";
         display: inline-block;
         width: 40px;
@@ -31,18 +35,15 @@ st.markdown("""
         background-repeat: no-repeat;
         background-position: center;
         margin-right: 10px;
-    }
-    .stChatMessage.user [data-testid="StChatMessageContent"]::before {
+    }}
+    .stChatMessage.user [data-testid="StChatMessageContent"]::before {{
         background-image: url("data:image/png;base64,{user_image}");
-    }
-    .stChatMessage.assistant [data-testid="StChatMessageContent"]::before {
+    }}
+    .stChatMessage.assistant [data-testid="StChatMessageContent"]::before {{
         background-image: url("data:image/png;base64,{ai_image}");
-    }
+    }}
 </style>
-""".format(
-    user_image=get_image_base64("assets/User.png"),
-    ai_image=get_image_base64("assets/Ai.png")
-), unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 api_key = os.getenv("gemini_api")
 if not api_key:
